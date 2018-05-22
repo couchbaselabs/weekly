@@ -1,0 +1,96 @@
+<div class="container-fluid">
+    <div class="masthead text-center">
+        <h2>Weekly Performance</h2>
+    </div>
+
+    <div class="masthead text-center">
+        <div class="btn-group" data-toggle="buttons">
+            <label
+                ng-repeat="build in builds"
+                ng-class="{active: build == activeBuild}"
+                ng-click="renderStatus(build)"
+                type="button" class="btn btn-default">
+                <input type="radio">{{ build }}
+            </label>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="panel panel-default" style="margin-left: 10%; width: 80%" ng-repeat="status in statuses">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ status.component }}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row" >
+                <div class="col-md-3 col-md-offset-0">
+                    <fieldset class="component">
+                        <legend class="component">Tests</legend>
+                        <div class="row text-center">
+                            <div class="col-md-3 col-md-offset-0 text-success">
+                                <h2>{{ status.test_status.passed }}</h2><h5>Passed</h5>
+                            </div>
+                            <div class="col-md-3 col-md-offset-0 text-warning">
+                                <h2>{{ status.test_status.missing }}</h2><h5>Missing</h5>
+                            </div>
+                            <div class="col-md-3 col-md-offset-0 text-danger">
+                                <h2>{{ status.test_status.failed }}</h2><h5>Failed</h5>
+                            </div>
+                            <div class="col-md-3 col-md-offset-0 text-default">
+                                <h2>{{ status.test_status.total }}</h2><h5>Total</h5>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-md-3 col-md-offset-0">
+                    <fieldset class="component">
+                        <legend class="component">Issues</legend>
+                        <div class="row text-center">
+                            <div class="col-md-4 col-md-offset-0 text-danger">
+                                <h2>{{ status.jira_status.created }}</h2><h5>Created</h5>
+                            </div>
+                            <div class="col-md-4 col-md-offset-0 text-success">
+                                <h2>{{ status.jira_status.resolved }}</h2><h5>Resolved</h5>
+                            </div>
+                            <div class="col-md-4 col-md-offset-0 text-warning">
+                                <h2>{{ status.jira_status.open }}</h2><h5>Open</h5>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-md-3 col-md-offset-0">
+                    <fieldset class=component>
+                        <legend class=component>Metrics</legend>
+                        <div class="row text-center">
+                            <div class="col-md-6 col-md-offset-0 text-warning">
+                                <h2>{{ status.metric_status.changed }}</h2><h5>Changed</h5>
+                            </div>
+                            <div class="col-md-6 col-md-offset-0">
+                                <h2>{{ status.metric_status.collected }}</h2><h5>Collected</h5>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-md-3 col-md-offset-0">
+                    <fieldset class=component>
+                        <legend class=component>KPI</legend>
+                        <div class="row text-center">
+                            <div class="col-md-4 col-md-offset-0 text-success">
+                                <h2>{{ status.kpi_status.passed }}</h2><h5>Passed</h5>
+                            </div>
+                            <div class="col-md-4 col-md-offset-0 text-danger">
+                                <h2>{{ status.kpi_status.violated }}</h2><h5>Violated</h5>
+                            </div>
+                            <div class="col-md-4 col-md-offset-0">
+                                <h2>{{ status.kpi_status.defined }}</h2><h5>Defined</h5>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
