@@ -65,10 +65,10 @@
                         <legend class=component>Metrics</legend>
                         <div class="row text-center">
                             <div class="col-md-6 col-md-offset-0 text-warning">
-                                <h2>{{ status.metric_status.changed }}</h2><h5>Changed</h5>
+                                <h2>{{ status.metric_status.changed.toLocaleString() }}</h2><h5>Changed</h5>
                             </div>
                             <div class="col-md-6 col-md-offset-0">
-                                <h2>{{ status.metric_status.collected }}</h2><h5>Collected</h5>
+                                <h2>{{ status.metric_status.collected.toLocaleString() }}</h2><h5>Collected</h5>
                             </div>
                         </div>
                     </fieldset>
