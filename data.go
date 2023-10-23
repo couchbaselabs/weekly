@@ -21,20 +21,32 @@ func newDataStore() *dataStore {
 		log.Error("missing Couchbase Server hostname")
 		os.Exit(1)
 	}
+
 	password := os.Getenv("CB_PASS")
 	if password == "" {
 		log.Error("missing password")
 		os.Exit(1)
 	}
 
-	connSpecStr := fmt.Sprintf("couchbase://%s", hostname)
+    username := os.Getenv("CB_USER")
+    if username == "" {
+        log.Error("missing username")
+        os.Exit(1)
+    }
+
+	connSpecStr := fmt.Sprintf("couchbases://%s", hostname)
 	cluster, err := gocb.Connect(connSpecStr)
 	if err != nil {
 		log.Error("failed to connect to Couchbase Server", "err", err)
 		os.Exit(1)
 	}
 
-	bucket, err := cluster.OpenBucket("weekly", password)
+    cluster.Authenticate(gocb.PasswordAuthenticator{
+		Username: username,
+		Password: password,
+	})
+
+	bucket, err := cluster.OpenBucket("weekly", "")
 	if err != nil {
 		log.Error("failed to connect to bucket", "err", err)
 		os.Exit(1)
