@@ -3,15 +3,10 @@
         <h2>Weekly Performance</h2>
     </div>
 
-    <div class="masthead text-center">
-        <div class="btn-group" data-toggle="buttons">
-            <label
-                ng-repeat="build in builds"
-                ng-class="{active: build == activeBuild}"
-                ng-click="renderStatus(build)"
-                type="button" class="btn btn-default">
-                <input type="radio">{{ build }}
-            </label>
+    <div class="row text-center">
+        <div class="col-md-4 col-md-offset-4">
+            <select class="form-control" ng-model="activeBuild" ng-options="build for build in builds" ng-change="renderStatus(activeBuild)" style="text-align-last: center">
+            </select>
         </div>
     </div>
 
